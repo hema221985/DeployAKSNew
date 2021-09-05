@@ -36,7 +36,7 @@ stages:
   displayName: Deploy to Dev
   dependsOn: Build
   variables: 
-    acrsecret: k8sacrauth
+    acrdevurl: k8sdeployaks.azurecr.io
   jobs:
   - deployment: Deploy
     displayName: Deploy to AKS
