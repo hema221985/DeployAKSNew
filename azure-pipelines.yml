@@ -63,7 +63,7 @@ stages:
             inputs:
               folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
               fileType: 'json'
-              targetFiles: '#replicaNo#'
+              targetFiles: 'deployment.yml'
           - task: KubernetesManifest@0
             inputs:
               action: 'deploy'
