@@ -59,11 +59,6 @@ stages:
               secretType: 'dockerRegistry'
               secretName: '$(acrsecret)'
               dockerRegistryEndpoint: 'K8SDockerContainerRegistry'
-          - task: FileTransform@1
-            inputs:
-              folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
-              fileType: 'json'
-              targetFiles: 'deployment.yml'
           - task: KubernetesManifest@0
             inputs:
               action: 'deploy'
