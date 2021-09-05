@@ -59,6 +59,11 @@ stages:
               secretType: 'dockerRegistry'
               secretName: '$(acrsecret)'
               dockerRegistryEndpoint: 'K8SDockerContainerRegistry'
+          - task: FileTransform@1
+            inputs:
+              folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              fileType: 'json'
+              targetFiles: '#replicaNo#'
           - task: KubernetesManifest@0
             inputs:
               action: 'deploy'
@@ -66,3 +71,4 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
                 $(Pipeline.Workspace)/manifests/service.yml
+              containers: '$(acrdevurl)/$(imageRepo):$(tag)'
